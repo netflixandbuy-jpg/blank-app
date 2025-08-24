@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arbitrage Calculator</title>
+  <meta name="description" content="Offline macOS-style arbitrage calculator for sports and prediction markets">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="titlebar">
+    <div class="window-controls">
+      <span class="dot dot-close" aria-hidden="true"></span>
+      <span class="dot dot-min" aria-hidden="true"></span>
+      <span class="dot dot-max" aria-hidden="true"></span>
+    </div>
+    <h1>Arbitrage Calculator</h1>
+  </header>
+
+  <main class="container">
+    <section class="card inputs-card">
+      <div class="row">
+        <label for="inputMode">Input mode</label>
+        <select id="inputMode">
+          <option value="cents" selected>Cents / Percent (0-100)</option>
+          <option value="decimal">Decimal (0-1)</option>
+        </select>
+      </div>
+
+      <div class="outcomes-header">
+        <div>Outcome</div>
+        <div class="price-col">Price</div>
+        <div class="actions-col"></div>
+      </div>
+      <div id="outcomesList" class="outcomes-list"></div>
+      <div class="row add-outcome-row">
+        <button id="addOutcomeBtn" class="btn secondary">+ Add outcome</button>
+      </div>
+
+      <div class="row stake-row">
+        <label for="totalStake">Total stake ($)</label>
+        <div class="stake-controls">
+          <input id="totalStake" type="number" inputmode="decimal" min="0" step="0.01" value="100.00" />
+          <input id="stakeSlider" type="range" min="0" max="10000" step="1" value="100" />
+        </div>
+      </div>
+
+      <div class="row buttons-row">
+        <button id="calculateBtn" class="btn primary">Calculate</button>
+        <button id="exportCsvBtn" class="btn" disabled>Export CSV</button>
+        <button id="resetBtn" class="btn subtle">Reset</button>
+      </div>
+    </section>
+
+    <section class="card results-card">
+      <div class="summary">
+        <div id="arbIndicator" class="badge">No calculation yet</div>
+        <div id="marginText" class="muted"></div>
+      </div>
+      <div class="table" id="resultsTable">
+        <!-- Results will be rendered here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted">Works offline • No data leaves your device</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

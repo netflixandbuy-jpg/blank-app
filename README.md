@@ -1,19 +1,31 @@
-# 🎈 Blank app template
+# Arbitrage Calculator
 
-A simple Streamlit app template for you to modify!
+A sleek, offline macOS-style web app to compute optimal stakes for arbitrage across mutually exclusive outcomes in sports and prediction markets.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Features
+- Input outcome prices as cents/percent (0-100) or decimal (0-1)
+- Enter total stake and instantly compute optimal stakes
+- Shows per-outcome stake and profit (equalized) and overall arbitrage margin
+- Color-coded profit/loss and arbitrage indicator
+- Add/remove outcomes dynamically
+- CSV export
+- Works fully offline (no network required)
 
-### How to run it on your own machine
+## How it works
+If each outcome contract costs price \(p_i\) (in decimal), the optimal stake to equalize returns is:
 
-1. Install the requirements
+- Equalized gross return \(G = T / \sum p_i\), where \(T\) is total stake
+- Stake per outcome \(s_i = T \cdot p_i / \sum p_i\)
+- Profit per outcome \(= G - T = T (1/\sum p_i - 1)\)
+- Arbitrage exists iff \(\sum p_i < 1\); margin is \(1 - \sum p_i\)
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+## Run locally
+Just open `index.html` in any modern browser. No build step.
 
-2. Run the app
+## Notes
+- Cents/percent inputs like `60` or `60%` are treated as `0.60`.
+- Decimal mode expects values like `0.60`.
+- Negative profits indicate no arbitrage exists with the given prices.
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## License
+MIT
